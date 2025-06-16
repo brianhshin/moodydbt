@@ -19,12 +19,6 @@ jobs:
           python3 --version
           python3 -m pip --version
 
-      - name: Install dbt
-        run: |
-          python3 -m pip install --upgrade pip
-          python3 -m pip install dbt-snowflake
-        env:
-          PATH: $HOME/.local/bin:$PATH
 
       - name: Run dbt debug
         run: dbt debug
