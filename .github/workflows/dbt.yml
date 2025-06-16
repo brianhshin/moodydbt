@@ -19,21 +19,14 @@ jobs:
           python3 --version
           python3 -m pip --version
 
-      - name: Debug PATH and dbt
-        run: |
-          echo $PATH
-          ls -al ~/.local/bin/dbt
-          ls -al ~/Library/Python/3.9/bin/dbt
-
-      - name: Install dbt
+      - name: Install dbt system-wide
         run: |
           python3 -m ensurepip --upgrade
           python3 -m pip install --upgrade pip
-          python3 -m pip install --user dbt-snowflake
-        env:
-          PATH: $HOME/.local/bin:$HOME/Library/Python/3.9/bin:$PATH
+          sudo python3 -m pip install dbt-snowflake
 
       - name: Run dbt debug
-        run: dbt --version
-        env:
-          PATH: $HOME/.local/bin:$HOME/Library/Python/3.9/bin:$PATH
+        run: dbt debug
+
+      - name: Run a specific dbt model
+        run: dbt run --select moodyhome.homes_raw
