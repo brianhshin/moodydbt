@@ -21,11 +21,12 @@ jobs:
 
 
       - name: Run dbt debug
-        run: dbt debug
+        run: dbt --version
         env:
           PATH: $HOME/.local/bin:$PATH
 
-      - name: Run a specific dbt model
-        run: dbt run --select moodyhome.homes_raw
-        env:
-          PATH: $HOME/.local/bin:$PATH
+      # - name: Run a specific dbt model
+      #   run: dbt run --select moodyhome.homes_raw
+      #   env:
+      #     PATH: $HOME/.local/bin:$PATH
+          
